@@ -1,0 +1,27 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: #f7f7f7;
+}
+
+
+.dropdown
+{
+    color:  #4d4d4d;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dropdown-menu a
+{
+	font-size: 15.5px;
+    font-family: Arial , Sans-serif;
+	color:  #4d4d4d;
+}
+
+.dropdown-content a:hover 
+{
+    background-color:  #4eb151;
+}

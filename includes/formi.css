@@ -1,0 +1,62 @@
+body 
+{
+    font-family: Arial , Sans-serif;
+	font-size:16px; 
+}
+label, #opis{
+    float:left;
+	margin-left:10px;
+    color: #4d4d4d;
+}
+input[type=text], input[type=date], input[type=password], select, textarea{
+	background-color:#f7f7f7;
+    float:left;
+	margin-left:10px;
+	margin-right:15px;
+    width:95%;
+	height:25px;
+	font-size:14px;
+}
+textarea{
+	height:100px;
+	margin-top:-20px;
+}
+input[type=submit]
+{
+   color:dark-grey;
+   background-color:#95d097;
+   width:130px;
+   height:50px;
+   margin-top:30px;
+   font-size: 15px;
+   font-weight:bold;
+   border-color: white;   
+}
+input[type=submit]:hover
+{
+   background-color: #f7f7f7;
+}
+
+.containerform
+{
+	text-align: center;
+	margin-top:20px;
+	height:auto;
+	padding:30px;
+	background-color:#95d097;
+	border-radius: 10px;
+}
+
+@media(max-width:767px){
+	.containerform{
+		margin-left:13%;
+		margin-right:15%;
+	}
+} 
+
+@media(min-width:767px){
+	.containerform{
+		margin-left:25%;
+	}
+} 
+	
