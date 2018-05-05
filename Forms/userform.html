@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <title>Корисник</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../includes/dashboard.css">
+	<link rel="stylesheet" type="text/css" href="../includes/formi.css">
+</head>
+<body>
+<div class="meni">
+    <nav id="myNavbar" class="navbar navbar-default" role="navigation"> 
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#meni-navbar-collapse-1">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="meni-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+					 <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Договор<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="dealform.html">Внеси договор</a></li>
+							<li><a href="dealtypeform.html">Внеси тип на договор</a></li>
+                            <li><a href="#">Излистај договори</a></li>
+							<li><a href="#">Излистај тип на договори</a></li>
+                        </ul>
+                    </li>
+					 <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Продукти<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="productsform.html">Внеси продукт</a></li>
+                            <li><a href="#">Излистај продукти</a></li>
+                        </ul>
+                    </li>
+					 <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Корисници<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="userform.html">Внеси корисник</a></li>
+							<li><a href="rolesform.html">Внеси тип на корисник</a></li>
+							<li><a href="#">Излистај корисници</a></li>
+                            <li><a href="#">Излистај тип на корисник</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Уплати<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="paymentsform.html">Внеси уплата</a></li>
+                            <li><a href="#">Излистај уплати</a></li>
+                        </ul>
+                    </li>
+					 <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Продажни места<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="areaform.html">Внеси продажно место</a></li>
+							<li><a href="spotform.html">Внеси тезга</a></li>
+                            <li><a href="#">Излистај уплати</a></li>
+							<li><a href="#">Излистај тезги</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#">Одјава</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+    
+<div class="col-xs-9 col-sm-6 containerform">
+<form action="Insert/insertUsers.php" method="post">
+
+<label>Име:</label>
+<input type="text" placeholder="Name" name="name"/>
+<br><br><br>
+
+<label>Презиме:</label>
+<input type="text" placeholder="Surname" name="surname"/>
+<br><br><br>
+
+<label>Емаил:</label>
+<input type="text" placeholder="E-mail" name="mail"/>
+<br><br><br>
+
+<label>Адреса:</label>
+<input type="text" placeholder="Address" name="address"/>
+<br><br><br>
+
+<label>ЕМБГ:</label>
+<input type="text" placeholder="EMBG" name="embg"/>
+<br><br><br>
+
+<label>Телефонски број:</label>
+<input type="text" placeholder="Phone" name="phone"/>
+<br><br><br>
+
+<label>Креиран на:</label>
+<input type="date" name="date">
+<br><br><br>
+
+<label>Лозинка:</label>
+<input type="password" placeholder="Password" name="pass"/>
+<br><br><br>
+
+<label>Тип на корисник:</label>
+<select>
+  <option value="volvo" name="role">Опција_1</option>
+</select>
+<br><br><br><br>
+<input type="submit" value="Зачувај"/>
+</form>
+
+</div>
+</body>
+</html>
