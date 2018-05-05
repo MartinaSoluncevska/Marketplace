@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo isset($title) ? $title : 'Eprofits Admin'; ?></title>
+        <?php $this->assets->render_styles(); ?>
+        <?php $this->assets->render_scripts(); ?>
+
+    </head>
+    <body>
+        <?php if ($this->uri->segment(2) && $this->uri->segment(2) !== 'login'): ?>
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="<?php echo site_url('eprofitsadmin/dashboard') ?>">Eprofits</a>
+                        <div class="nav-collapse collapse">
+
+                            <ul class="nav" style="width: 80%">
+                                <?php if (is_administrator()): ?>
+                                    <li <?php echo ($this->uri->segment('2') == 'dashboard') ? 'active="active"' : ''; ?>>
+                                        <a href="<?php echo site_url('eprofitsadmin/dashboard') ?>">Dashboard</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (is_administrator()) : ?>
+                                    <li <?php echo ($this->uri->segment('2') == 'users') ? 'active="active"' : ''; ?>>
+                                        <a href="<?php echo site_url('eprofitsadmin/users') ?>">Users</a>
+                                    </li>
+                                <?php endif; ?>
+                                <li <?php echo ($this->uri->segment('2') == 'blogs') ? 'active="active"' : ''; ?>>
+                                    <a href="<?php echo site_url('eprofitsadmin/blogs') ?>">Blog</a>
+                                </li>
+                                <li <?php echo ($this->uri->segment('2') == 'stats/') ? 'active="active"' : ''; ?>>
+                                    <a href="http://google.com/analytics/" target="_blank">Statistics</a>
+                                </li>
+                                <li style="float: right;">
+                                    <a href="<?php echo site_url('signout'); ?>">Log out</a>
+                                </li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                  <div class="span3">
+                  <?php echo $this->load->view(BACKEND_ROOT.'partials/users');?>
+
+                  </div>
+                    <div class="span9">
+                      <div class="page-header">
+                        <h2>Edit user</h2>
+                      </div>
+
+
+                      <?php $post_data = $this->session->flashdata('post_data');  ?>
+
+                      <form  method="post" enctype="multipart/form-data">
+
+                      <div class="row-fluid">
+                          <h5>Username</h5>
+                          <input type="text" name="username" class="input-block-level" value="<?php echo $user['username'];?>" required="required"/>
+
+                          <h5>Permalink</h5>
+                          <input type="text" name="permalink" class="input-block-level" value="<?php echo $user['permalink'];?>" />
+
+
+                          <h5>Password</h5>
+                          <input type="password" name="password" class="input-block-level"  />
+
+                          <h5>Confirm Password</h5>
+                          <input type="password" name="password_confirm" class="input-block-level" />
+
+                          <h5>Email</h5>
+                          <input type="email" name="email" class="input-block-level" value="<?php echo $user['email'];?>" required="required"/>
+
+                          <h5>Status</h5>
+                          <select name="status">
+                                  <option value="1" <?php echo ($user['status'] == 1 ) ? 'selected="selected"' : '';?>>Active</option>
+                                  <option value="0" <?php echo ($user['status'] == 0 ) ? 'selected="selected"' : '';?>>Not Active</option>
+                          </select>
+
+                          <h5>Role</h5>
+                          <select name="role">
+                                  <option value="<?php echo ADMINISTRATOR;?>" <?php echo ($user['roles'] == ADMINISTRATOR ) ? 'selected="selected"' : '';?>>Administrator</option>
+                                  <option value="<?php echo WRITER;?>"        <?php echo ($user['roles'] == WRITER ) ? 'selected="selected"' : '';?>>Writer</option>
+                                  <option value="<?php echo MEMBER;?>"        <?php echo ($user['roles'] == MEMBER ) ? 'selected="selected"' : '';?>>Member</option>
+                          </select>
+
+                          <h5>Image</h5>
+                          <img alt="" src="<?php echo base_url('assets/images/users/'.$user['avatar']);?>" width="200" style="border: 2px solid #ccc;">
+                          <input type="file" name="avatar" class="input-block-level" />
+
+                          <hr>
+                          <input type="submit" name="save" value="Save" class="btn btn-primary" />
+                          <button class="btn" type="button" onclick="location.href='<?php echo site_url('eprofitsadmin/users')?>'">Cancel</button>
+                      </div>
+
+                      </form>
+
+                    </div>
+              </div>
+
+          </div>
+        <?php endif; ?>
+        <hr>
+        <footer style="padding: 20px;">
+           <p>© eProfits 2013</p>
+        </footer>
+    </body>
+</html>

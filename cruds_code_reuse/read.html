@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo isset($title) ? $title : 'Eprofits Admin'; ?></title>
+        <?php $this->assets->render_styles(); ?>
+        <?php $this->assets->render_scripts(); ?>
+
+    </head>
+    <body>
+        <?php if ($this->uri->segment(2) && $this->uri->segment(2) !== 'login'): ?>
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="<?php echo site_url('eprofitsadmin/dashboard') ?>">Eprofits</a>
+                        <div class="nav-collapse collapse">
+
+                            <ul class="nav" style="width: 80%">
+                                <?php if (is_administrator()): ?>
+                                    <li <?php echo ($this->uri->segment('2') == 'dashboard') ? 'active="active"' : ''; ?>>
+                                        <a href="<?php echo site_url('eprofitsadmin/dashboard') ?>">Dashboard</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (is_administrator()) : ?>
+                                    <li <?php echo ($this->uri->segment('2') == 'users') ? 'active="active"' : ''; ?>>
+                                        <a href="<?php echo site_url('eprofitsadmin/users') ?>">Users</a>
+                                    </li>
+                                <?php endif; ?>
+                                <li <?php echo ($this->uri->segment('2') == 'blogs') ? 'active="active"' : ''; ?>>
+                                    <a href="<?php echo site_url('eprofitsadmin/blogs') ?>">Blog</a>
+                                </li>
+                                <li <?php echo ($this->uri->segment('2') == 'stats/') ? 'active="active"' : ''; ?>>
+                                    <a href="http://google.com/analytics/" target="_blank">Statistics</a>
+                                </li>
+                                <li style="float: right;">
+                                    <a href="<?php echo site_url('signout'); ?>">Log out</a>
+                                </li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+
+                    <div class="span3">
+                        <?php echo $this->load->view(BACKEND_ROOT . 'partials/users'); ?>
+                        <?php echo $this->load->view(BACKEND_ROOT . 'partials/filter_users'); ?>
+                    </div>
+
+
+                    <div class="span9">
+                        <div class="well" >
+                            <a href="<?php echo site_url('eprofitsadmin/users/add'); ?>" class="btn btn-success"><i class=" icon-plus"></i> New</a>
+                            <button class="btn" id="activate_c"><i class="icon-ok"></i> Activate</button>
+                            <button class="btn" id="deactivate_c"><i class="icon-minus-sign"></i> Deactivate</button>
+                            <button class="btn" id="delete_c"><i class="icon-trash"></i> Delete</button>
+                            <div style="float: right;">
+                                <input	type="text" class="search-query" placeholder="Search" id="search_query" value="<?php echo $this->input->get('search'); ?>">
+                                <button class="btn" id="search" style="margin-left: 10px;" id="search"><i class="icon-search"></i> Search</button>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <form id="read_users_form" action="" data-url="<?php echo site_url('eprofitsadmin/users'); ?>" method="post">
+                            <table  class="table table-striped">
+                                <thead>
+                                    <tr style="font-weight: bold;" style="padding: 10px;">
+
+                                        <th><input type="checkbox" id="select_all"></th>
+                                        <th>Username</th>
+                                        <th>Permalink</th>
+                                        <th>Avatar</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Created at</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($users as $user): ?>
+
+                                        <tr>
+                                            <td><input type="checkbox" name="users[]" value="<?php echo $user['id']; ?>" class="check"></td>
+                                            <td><a href="<?php echo base_url(); ?>eprofitsadmin/users/edit/<?php echo $user['id']; ?>" >
+                                                    <?php echo $user['username']; ?></a></td>
+                                            <td><?php echo $user['permalink']; ?></td>
+                                            <td><?php echo $user['avatar']; ?></td>
+                                            <td><?php echo $user['email']; ?></td>
+                                            <td><?php
+                                                $role = '';
+                                                switch ($user['roles'])
+                                                {
+
+                                                    case ADMINISTRATOR:
+                                                        $role = 'Administrator';
+                                                        break;
+                                                    case MEMBER:
+                                                        $role = 'Member';
+                                                        break;
+                                                    case WRITER:
+                                                        $role = 'Writer';
+                                                        break;
+                                                }
+                                                echo $role;
+                                                ?></td>
+                                            <td><?php echo ($user['status'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-important">Not active</span>';
+                                                ?></td>
+                                            <td><?php echo date(EP_DATETIME_FORMAT, strtotime($user['created_at'])); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <hr>
+        <footer style="padding: 20px;">
+           <p>© eProfits 2013</p>
+        </footer>
+    </body>
+</html>
